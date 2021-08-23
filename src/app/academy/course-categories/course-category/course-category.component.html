@@ -1,0 +1,12 @@
+<form #myForm ="ngForm" >
+    <div class = "pointer">
+        <label for="title">Title : </label>
+        <input type="text" id="title" name = "title"
+         [(ngModel)] ="model.title" required minlength="3" #title ="ngModel"/>
+         <span style="color: red;"
+          [hidden] ="!title.errors?.required">الزامی است</span>
+          <span style="color: red;" [hidden] ="!title.errors?.minlength">کوتاه است</span>
+    </div>
+    
+    <button kendoButton (click) ="save()" [disabled] ="!(myForm.valid)">save</button>
+</form>

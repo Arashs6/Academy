@@ -1,0 +1,21 @@
+<button kendoButton  icon="'plus'" (click)="addRoot()">Add Root</button>
+
+<kendo-treeview
+[nodes]="courseCategories"
+textField="title"
+kendoTreeViewExpandable
+kendoTreeViewSelectable
+kendoTreeViewHierarchyBinding
+childrenField="children"
+>
+<ng-template kendoTreeViewNodeTemplate let-dataItem>
+    
+    {{dataItem.title}}
+    <span class= "k-icon k-i-edit pointer" (click) = "edit(dataItem)" ></span>
+    <span *ngIf ="dataItem.children == null" 
+    class= "k-icon k-i-delete pointer" (click) = "delete(dataItem)" ></span>
+    
+  </ng-template>
+</kendo-treeview>
+
+<div kendoDialogContainer></div>
