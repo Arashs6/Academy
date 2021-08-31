@@ -1,4 +1,3 @@
-
 import { CourseCategoryComponent } from './course-categories/course-category/course-category.component';
 import { RouterModule } from '@angular/router';
 import { CourseCategoryListComponent } from './course-categories/course-category-list/course-category-list.component';
@@ -13,6 +12,9 @@ import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule } from '@angular/forms';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { CourseListComponent } from './courses/course-list/course-list.component';
+import { CourseService } from './courses/course-list/shared/course.service';
+
+
 
 
 
@@ -33,7 +35,7 @@ import { CourseListComponent } from './courses/course-list/course-list.component
     GridModule
   ],
   exports:[],
-  providers : [CrouseCategoryService],
+  providers : [CrouseCategoryService,CourseService],
   entryComponents: [CourseCategoryComponent]
 })
 export class AcademyModule { }

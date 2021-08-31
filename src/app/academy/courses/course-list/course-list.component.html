@@ -1,7 +1,13 @@
-<kendo-grid [data]="data" [height]="410">
-  <kendo-grid-column field="id" title="ID" [width]="40">
+<kendo-grid 
+[data]="data"
+[pageSize]="pageSize"
+[skip]="skip"
+[pageable]="true"
+(pageChange)="gridStateChanged($event)"
+ [height]="410">
+  <kendo-grid-column field="id" title="شناسه" [width]="40">
   </kendo-grid-column>
-  <kendo-grid-column field="title" title="Name" [width]="250">
+  <kendo-grid-column field="title" title="نام" [width]="250">
   </kendo-grid-column>
   
   
