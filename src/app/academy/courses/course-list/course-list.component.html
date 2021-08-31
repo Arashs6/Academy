@@ -1,9 +1,9 @@
 <kendo-grid 
-[data]="data"
-[pageSize]="pageSize"
-[skip]="skip"
-[pageable]="true"
-(pageChange)="gridStateChanged($event)"
+[data]="data | async"
+[pageSize]="state.take"
+      [skip]="state.skip"
+       [pageable]="true"
+      (pageChange)="gridStateChanged($event)"
  [height]="410">
   <kendo-grid-column field="id" title="شناسه" [width]="40">
   </kendo-grid-column>

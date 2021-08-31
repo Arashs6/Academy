@@ -1,5 +1,6 @@
+import { observable, Observable } from 'rxjs';
 
-import { GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
+import { DataStateChangeEvent, GridDataResult, PageChangeEvent } from '@progress/kendo-angular-grid';
 
 import { Component, OnInit } from '@angular/core';
 
@@ -14,24 +15,25 @@ import { State } from '@progress/kendo-data-query';
 })
 export class CourseListComponent implements OnInit 
 {
-  public data!: GridDataResult;
-  public pageSize = 5;
-  public skip = 0;
+  public data: Observable<GridDataResult>  ;
+  
+  public state : State ={
+  
+    skip: 0,
+    take: 5,
+    }
+  
   constructor(private service : CourseService){  }
  
   ngOnInit(): void {
         
-        this.reloadGrid();
+        this.data = this.service;
+        this.service.query(this.state)
   }
   
-  public gridStateChanged(event: PageChangeEvent): void {
-    this.skip = event.skip;
-    this.reloadGrid();
+  public gridStateChanged(state: DataStateChangeEvent): void {
+    this.state = state
+    this.service.query(this.state);
   }
-  
-  private reloadGrid(){
-    this.service.getAll(this.skip, this.pageSize).subscribe(response => { this.data = response; });
-  }
-
 
 }

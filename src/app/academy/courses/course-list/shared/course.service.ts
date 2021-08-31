@@ -1,18 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Observable } from 'rxjs';
-import { GridDataResult } from '@progress/kendo-angular-grid';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { GridComponent, GridDataResult } from '@progress/kendo-angular-grid';
+import { State } from '@progress/kendo-data-query';
 
 @Injectable()
-export class CourseService{
+export class CourseService extends BehaviorSubject<GridDataResult>{
   
     private url = "https://localhost:5050/api/Course";
-    constructor(private http: HttpClient){}
+    
+    constructor(private http: HttpClient,grid:GridDataResult){
 
-    public getAll(skip:number,take:number) :Observable<GridDataResult>  
+      super(grid)
+    }
+
+    public query(state : State) 
     {
       
-          var curl = `${this.url}?pageSize=${take}&skip=${skip}`;
-          return  this.http.get<GridDataResult>(curl);
+          var curl = `${this.url}?pageSize=${state.take}&skip=${state.skip}`;
+          this.http.get<GridDataResult>(curl).subscribe(a=> this.next(a));
     }
   }
