@@ -1,3 +1,4 @@
+
 import { CourseCategoryComponent } from './course-categories/course-category/course-category.component';
 import { RouterModule } from '@angular/router';
 import { CourseCategoryListComponent } from './course-categories/course-category-list/course-category-list.component';
@@ -10,13 +11,16 @@ import { TreeViewModule } from '@progress/kendo-angular-treeview';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { FormsModule } from '@angular/forms';
+import { GridModule } from '@progress/kendo-angular-grid';
+import { CourseListComponent } from './courses/course-list/course-list.component';
 
 
 
 @NgModule({
   declarations: [
     CourseCategoryListComponent,
-    CourseCategoryComponent
+    CourseCategoryComponent,
+    CourseListComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ButtonsModule,
     DialogsModule,
-    FormsModule
+    FormsModule,
+    GridModule
   ],
   exports:[],
   providers : [CrouseCategoryService],
